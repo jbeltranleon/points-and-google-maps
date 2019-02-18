@@ -28,5 +28,5 @@ directions_result = gmaps.directions("Sydney Town Hall",
                                      departure_time=now)
 
 print(geocode_result)
-print(reverse_geocode_result)
-print(directions_result)
+#print(reverse_geocode_result)
+#print(directions_result)
