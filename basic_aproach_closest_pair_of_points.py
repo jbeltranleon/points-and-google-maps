@@ -25,29 +25,55 @@ def closest_pair(ax, ay):
         print('*WARNING*: We are using a brute comparison')
         print('-call next func-\n\n'.upper())
         return brute(ax)  # A call to bruteforce comparison
+    
+    print('**Alert*** Long Process')
     mid = ln_ax // 2  # Division without remainder, need int
+    print(f'middle of the ax vector = mid = {mid}')
+    print('**Alert** Spliting the ax vector')
     Qx = ax[:mid]  # Two-part split
     Rx = ax[mid:]
+    print(f'Qx = {Qx} and Rx = {Rx}')
     # Determine midpoint on x-axis
-    midpoint = ax[mid][0]  
+    midpoint = ax[mid][0]
+    print(f'Middle point = midpoint = {midpoint}')  
     Qy = list()
     Ry = list()
+    print(f'Qy = {Qy} and Ry = {Ry}')
     for x in ay:  # split ay into 2 arrays using midpoint
         if x[0] <= midpoint:
            Qy.append(x)
         else:
            Ry.append(x)
+    print(f'Qy = {Qy} and Ry = {Ry}')
+
     # Call recursively both arrays after split
+    print('-call next func-\n\n'.upper())
+    
+    print('\n\n*********************')
+    print('*WARNING*: divide and conquer')
+    print('*** **** X *** ***')
     (p1, q1, mi1) = closest_pair(Qx, Qy)
+    print(f'p1={p1}, q1={q1}, mi1={mi1}')
+    print('*********************')
+    print('-call next func-\n\n'.upper())
+    
+    print('\n\n*********************')
+    print('*WARNING*: divide and conquer')
+    print('*** **** Y *** ***')
     (p2, q2, mi2) = closest_pair(Rx, Ry)
+    print(f'p2={p2}, q2={q2}, mi2={mi2}')
+    print('*********************')
     # Determine smaller distance between points of 2 arrays
     if mi1 <= mi2:
+        print('mi1 <= mi2'.upper())
         d = mi1
         mn = (p1, q1)
     else:
+        print('else'.upper())
         d = mi2
         mn = (p2, q2)
     # Call function to account for points on the boundary
+    print('\n\n\nThe last part')
     (p3, q3, mi3) = closest_split_pair(ax, ay, d, mn)
     # Determine smallest distance for the array
     if d <= mi3:
@@ -112,9 +138,14 @@ def test_case(length: int = 5):
     return lst1, lst2
 
 if __name__ == "__main__":
-    x = [30,20,60]
-    y = [40,50,90]
-    print(solution(x, y))
-
+    op = int(input("(1) 3 Puntos\n(2) 4 Puntos\n> "))
+    if op == 1:
+        x = [30,20,60]
+        y = [40,50,90]
+        print(solution(x, y))
+    else: 
+        x = [30,20,60,70]
+        y = [40,50,90,80]
+        print(solution(x, y))
     
 
