@@ -11,8 +11,9 @@ def solution(x, y):
     ay = sorted(a, key=lambda x: x[1])  # Presorting y-wise
 
     print(f'sorted ax: {ax}\nsorted ay: {ay}')
-    print('-call next func-'.upper())
+    print('-call next func-\n\n'.upper())
     p1, p2, mi = closest_pair(ax, ay)  # Recursive D&C function
+    print(f'\n\nNearest points: \np1 = {p1} and p2={p2}')
     print('----- end ------'.upper())
     return mi
 
@@ -22,7 +23,7 @@ def closest_pair(ax, ay):
     print(f'len of ax = ln_ax = {ln_ax}')
     if ln_ax <= 3:
         print('*WARNING*: We are using a brute comparison')
-        print('-call next func-'.upper())
+        print('-call next func-\n\n'.upper())
         return brute(ax)  # A call to bruteforce comparison
     mid = ln_ax // 2  # Division without remainder, need int
     Qx = ax[:mid]  # Two-part split
@@ -56,23 +57,35 @@ def closest_pair(ax, ay):
 
 def brute(ax):
     print('---- brute -----'.upper())
+    print(f'ax vector = {ax}')
+    print('-call next func-\n\n'.upper())
     mi = dist(ax[0], ax[1])
+    print(f'mi = {mi}')
     p1 = ax[0]
     p2 = ax[1]
     ln_ax = len(ax)
     if ln_ax == 2:
+        print('*WARNING*: The process just include 2 points')
         return p1, p2, mi
     for i in range(ln_ax-1):
         for j in range(i + 1, ln_ax):
             if i != 0 and j != 1:
+                print('**Alert** Process to iterate all of points')
+                print('-call next func-\n\n'.upper())
                 d = dist(ax[i], ax[j])
+                print(f'd = {d}')
                 if d < mi:  # Update min_dist and points
+                    print('**Alert** Points are updated')
                     mi = d
                     p1, p2 = ax[i], ax[j]
     return p1, p2, mi
 
 import math
 def dist(p1, p2):
+    print('----- dist -----'.upper())
+    print(f'p1={p1}\np2={p2}')
+    # Equation of distance between two points
+    print('d = √(x1-x2)^2 + (y1-y2)^2')
     return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
 def closest_split_pair(p_x, p_y, delta, best_pair):
@@ -99,8 +112,8 @@ def test_case(length: int = 5):
     return lst1, lst2
 
 if __name__ == "__main__":
-    x = [30,20,10]
-    y = [40,50,60]
+    x = [30,20,60]
+    y = [40,50,90]
     print(solution(x, y))
 
     
